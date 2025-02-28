@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hello_open_source"
+version = "0.1.0"
+description = "this is a tutorial on how to build an open source project"
+readme = "README.MD"
+requires-python = ">=3.8"
+dependencies = []
