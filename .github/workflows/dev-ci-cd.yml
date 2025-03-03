@@ -3,6 +3,22 @@ on:
   push:
     branches: [ dev ]
 jobs:
+  
+  # Step 1: build the distribution
+  build:
+    name: Build distribution 📦
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.x"
+
+  # Step 2: Publish to Pypi  
   pypi-publish:
     name: Upload release to PyPI
     runs-on: ubuntu-latest
