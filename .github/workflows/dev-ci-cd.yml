@@ -35,7 +35,7 @@ jobs:
         name: python-package-distributions
         path: dist/
 
-  
+  # Step 2 publish to pypi
   publish-to-pypi:
     name: >-
       Publish Python 🐍 distribution 📦 to PyPI
@@ -45,9 +45,9 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: dev-pypi
-      url: https://test.pypi.org/p/hello-open-source 
+      url: https://test.pypi.org/p/hello-open-source  
     permissions:
-      id-token: write 
+      id-token: write  
 
     steps:
     - name: Download all the dists
@@ -58,4 +58,8 @@ jobs:
     - name: Publish distribution 📦 to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
-      repository-url: https://test.pypi.org/legacy/
+        repository-url: https://test.pypi.org/legacy/
+
+  
+  
+  
