@@ -35,17 +35,27 @@ jobs:
         name: python-package-distributions
         path: dist/
 
-  # Step 2: Publish to Pypi  
-  pypi-publish:
-    name: Upload release to PyPI
+  
+  publish-to-pypi:
+    name: >-
+      Publish Python 🐍 distribution 📦 to PyPI
+    # if: startsWith(github.ref, 'refs/tags/')  # only publish to PyPI on tag pushes
+    needs:
+    - build
     runs-on: ubuntu-latest
     environment:
-      name: test-pypi
-      url: https://test.pypi.org/p/hello-open-source
+      name: dev-pypi
+      url: https://test.pypi.org/p/hello-open-source 
     permissions:
       id-token: write 
+
     steps:
-    - name: Publish package distributions to PyPI
+    - name: Download all the dists
+      uses: actions/download-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+    - name: Publish distribution 📦 to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        repository-url: https://test.pypi.org/legacy/
+      repository-url: https://test.pypi.org/legacy/
